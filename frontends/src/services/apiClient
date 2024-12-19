@@ -1,0 +1,19 @@
+// src/services/apiClient.js
+export default apiClient;
+import axios from 'axios';
+
+const apiClient = axios.create({
+  baseURL: 'http://127.0.0.1:8000/api/', // Base URL for all API calls
+  withCredentials: true, // Necessary for cookies if using sessions
+  headers: {
+    'Content-Type': 'application/json',
+    // Any other headers can be defined here
+  }
+});
+
+// Optionally handle global request or response interceptors
+apiClient.interceptors.response.use(response => response, error => {
+  // Handle global API error responses
+  return Promise.reject(error);
+});
+
